@@ -1,0 +1,54 @@
+<h1>Pessoas Cadastradas</h1>
+<div class="card">
+    <div class="card-head">
+        <div class="input-group d-flex align-items-center w-100">
+            <div class="form-outline flex-grow-1">
+                <input type="search" [(ngModel)]="pesquisar" id="pesquisar" class="form-control"
+                    (keyup.enter)="pesquisarPessoas()" placeholder="Pesquise por nome..." />
+            </div>
+            <button type="button" class="btn btn-primary ml-2" (click)="pesquisarPessoas()" data-mdb-ripple-init>
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Nacionalidade</th>
+                    <th>Documento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pessoa of pessoas$ | async" class="table-row">
+                    <td>{{pessoa.id}}</td>
+                    <td>{{pessoa.nome}}</td>
+                    <td>{{pessoa.dataNascimento}}</td>
+                    <td *ngIf="pessoa.nacionalidade==1">Brasileira</td>
+                    <td *ngIf="pessoa.nacionalidade==2">Outro</td>
+                    <td *ngIf="pessoa.nacionalidade==1">{{pessoa.rg}}</td>
+                    <td *ngIf="pessoa.nacionalidade==2">{{pessoa.passaporte}}</td>
+                    <td class="d-flex align-items-center">
+                        <span *ngIf="pessoa.inativo" class="status-circle bg-danger"></span>
+                        <span *ngIf="pessoa.inativo" class="ml-2 text-danger">Inativo</span>
+                        <span *ngIf="!pessoa.inativo" class="status-circle bg-success"></span>
+                        <span *ngIf="!pessoa.inativo" class="ml-2 text-success">Ativo</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" [routerLink]="['/edit-pessoa', pessoa.id]">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm ml-2" (click)="confirmarExclusao(pessoa.id)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

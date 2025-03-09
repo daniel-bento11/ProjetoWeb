@@ -1,0 +1,69 @@
+<h1>Adicionar Pessoa</h1>
+<div class="card" style="max-width: 600px; margin: 0 auto;">
+    <div class="card-body">
+        <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+            <div class="form-group" [ngClass]="aplicaCssErro('nome')">
+                <div class="col-sm-12">
+                    <label for="nome" class="control-label">Nome Completo</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" formControlName="nome" id="nome" placeholder="Nome" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="aplicaCssErro('dataNascimento')">
+                <div class="col-sm-12">
+                    <label for="dataNascimento" class="control-label">Data de Nascimento</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="date" formControlName="dataNascimento" id="dataNascimento" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="inativo" class="control-label">Inativo?</label>
+                </div>
+                <div class="col-sm-12 form-check text-center">
+                    <input type="checkbox" formControlName="inativo" id="inativo" class="form-check-input">
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="aplicaCssErro('nacionalidade')">
+                <div class="col-sm-12">
+                    <label for="nacionalidade" class="control-label">Nacionalidade</label>
+                </div>
+                <div class="col-sm-12">
+                    <select formControlName="nacionalidade" [(ngModel)]="nacionalidade" (change)="onNacionalidadeChange()" id="nacionalidade" class="form-control">
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="1">Brasileira</option>
+                        <option value="2">Outros</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="nacionalidade=='1'" [ngClass]="aplicaCssErro('rg')">
+                <div class="col-sm-12">
+                    <label for="rg" class="control-label">RG</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" formControlName="rg" id="rg" placeholder="RG" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="nacionalidade=='2'" [ngClass]="aplicaCssErro('passaporte')">
+                <div class="col-sm-12">
+                    <label for="passaporte" class="control-label">Passaporte</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" formControlName="passaporte" id="passaporte" placeholder="Passaporte" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-success">Adicionar Pessoa</button>
+                <button type="reset" class="btn btn-danger ml-2">Limpar Formulário</button>
+            </div>
+        </form>
+    </div>
+</div>
