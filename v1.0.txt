@@ -1,0 +1,19 @@
+Aplicativo Desenvolvido Processo Seletivo Moura
+
+RF
+	Cadastrar Pessoas
+	Emitir Relatório de Pessoas Cadastradas
+	Pesquisar Pessoas Cadastradas
+	Excluir Pessoas Cadastradas
+
+RNF
+	Angular (Aplicação WEB)
+	API C# - .NET
+
+
+Frameworks: (BootStrap, EntityFramework)
+Banco de Dados: SQlite
+
+<settings.versios>{
+.Net 8. 
+}
